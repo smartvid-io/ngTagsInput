@@ -493,7 +493,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                 .on('input-change', function() {
                     tagList.clearSelection();
                     scope.newTag.invalid = null;
-                    clickInput();
+                    clickInput(); // WA-3574 hack for focust
                 })
                 .on('input-focus', function() {
                     element.triggerHandler('focus');

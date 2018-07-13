@@ -324,6 +324,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                 input = element.find('input'),
                 validationOptions = ['minTags', 'maxTags', 'allowLeftoverText'],
                 setElementValidity,
+                clickInput,
                 focusInput;
 
             setElementValidity = function() {
@@ -334,6 +335,10 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
 
             focusInput = function() {
                 $timeout(function() { input[0].focus(); });
+            };
+
+            clickInput = function() {
+                $timeout(function() { input[0].click(); });
             };
 
             ngModelCtrl.$isEmpty = function(value) {
@@ -484,6 +489,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                 .on('input-change', function() {
                     tagList.clearSelection();
                     scope.newTag.invalid = null;
+                    clickInput(); // WA-3574 hack for element focus
                 })
                 .on('input-focus', function() {
                     element.triggerHandler('focus');

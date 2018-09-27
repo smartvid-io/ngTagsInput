@@ -87,7 +87,7 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
                 self.items = items.slice(0, options.maxResultsToShow);
 
                 if (extraItem) {
-                    self.items.push(extraItem)
+                    self.items.push(extraItem);
                 }
 
                 if (self.items.length > 0) {

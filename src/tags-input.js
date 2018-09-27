@@ -1,3 +1,5 @@
+/* jshint node: true */
+
 'use strict';
 
 /**
@@ -132,7 +134,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
 
         self.removeAll = function() {
           self.items = [];
-        }
+        };
 
         self.remove = function(index) {
             var tag = self.items[index];
@@ -264,7 +266,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                         $element.find('input').blur();
                     }
                 });
-            }
+            };
 
             $scope.handleSearchStarted = this.handleSearchStarted;
 
@@ -310,11 +312,11 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
 
             if (parentCtrl) {
               parentCtrl.proceedWithSearchFromSearchButton = function () {
-                 console.log("search from search button")
+                 console.log('search from search button');
                  if (scope.fireSearch) {
-                   scope.fireSearch(true)
+                   scope.fireSearch(true);
                  }
-              }
+              };
             }
 
             var hotkeys = [KEYS.enter, KEYS.comma, KEYS.space, KEYS.backspace, KEYS.delete, KEYS.left, KEYS.right, KEYS.single_quote],
@@ -349,7 +351,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
             scope.shouldRemoveTagsOnInputLostFocus = false;
 
             scope.$watch('shouldRemoveTagsOnInputLostFocus', function(value) {
-                scope.shouldRemoveTagsOnInputLostFocus = value
+                scope.shouldRemoveTagsOnInputLostFocus = value;
 
                 if (scope.shouldRemoveTagsOnInputLostFocus) {
                     scope.tagList.removeAll();
@@ -513,7 +515,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
 
                     // Initiate search upon enter when there are 1 or more tags selected and current tag input is empty
                     if (key  === KEYS.enter &&
-                            scope.newTag.text() === '' && tagList.items.length > 0 && scope.onStartSearch) {
+                            (scope.newTag.text() !== '' || tagList.items.length > 0) && scope.onStartSearch) {
                         scope.onStartSearch();
                         element.find('input').blur();
                         event.preventDefault();

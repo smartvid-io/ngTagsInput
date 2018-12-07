@@ -516,12 +516,8 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                     // Initiate search upon enter when there are 1 or more tags selected and current tag input is empty
                     if (key  === KEYS.enter &&
                             (scope.newTag.text() !== '' || tagList.items.length > 0) && scope.onStartSearch) {
-
-                        tagList.addText(scope.newTag.text()).then(function() {
-                            scope.onStartSearch();
-                            element.find('input').blur();
-                            event.preventDefault();
-                        });
+                        // handled outside component
+                        event.preventDefault();
                         return;
                     }
 
